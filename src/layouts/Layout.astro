@@ -195,6 +195,7 @@ const handle = '@KingPr0o7';
 	//
 
 	const BANNER_IMAGE = ".blog-image-wrapper .blog-image";
+	const BANNER_CONTAINER = ".blog-visible-container"
 	const BANNER_TITLE = ".blog-image-wrapper .blog-title";
 	const BANNER_INFO = ".blog-image-wrapper .blog-info";
 	const POST_IMAGE = '.blog-link[href="${pathname}"] .blog-thumbnail';
@@ -232,6 +233,7 @@ const handle = '@KingPr0o7';
 
 	function addBlogBannerViewTransitionNames(doc: Document) {
 		setName(doc, BANNER_IMAGE, "blog-image");
+		setName(doc, BANNER_CONTAINER, "blog-info");
 		setName(doc, BANNER_TITLE, "blog-title");
 		setName(doc, BANNER_INFO, "info");
 	}
@@ -243,6 +245,7 @@ const handle = '@KingPr0o7';
 
 	function removeBlogViewTransitionNames(doc: Document, pathname: string) {
 		setName(doc, BANNER_IMAGE, "");
+		setName(doc, BANNER_CONTAINER, "");
 		setName(doc, BANNER_TITLE, "");
 		setName(doc, BANNER_INFO, "");
 		setName(doc, withPathname(pathname, POST_IMAGE), "");

@@ -6,6 +6,7 @@
 			"@src/*": [ "src/*" ],
 			"@public/*": [ "public/*" ],
 			"@images/*": [ "src/images/*" ],
+			"@blog_images/*": [ "src/images/blogs/*" ],
 			"@branding/*": [ "src/images/branding/*" ],
 			"@personal/*": [ "src/images/personal/*" ],
 			"@people/*": [ "src/images/people/*" ],

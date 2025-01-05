@@ -4,15 +4,17 @@ interface Props {
 	alt: string;
 	width?: number;
 	height?: number;
+	crop_height?: number;
+	crop_position?: string; // Add this line
 }
 
 import { Image } from 'astro:assets'
 
-const { src, alt, width, height } = Astro.props
+const { src, alt, width, height, crop_height, crop_position } = Astro.props
 ---
 
-<div class="image-wrapper">
-	<Image src={src} alt={alt} width={width} height={height} />
+<div class=`image-wrapper ${crop_height ? 'crop' : ''}` style=`height: ${crop_height}px;`>
+	<Image src={src} alt={alt} width={width} height={height} style=`object-position: ${crop_position};`/>
 </div>
 
 <style is:inline>
@@ -20,10 +22,12 @@ const { src, alt, width, height } = Astro.props
 		display: flex;
 		justify-content: center;
 		max-width: 100%;
+		max-height: 100%;
 	}
 
-		.image-wrapper img {
-			max-width: 100%;
-			height: auto;
-		}
+	.image-wrapper img {
+		object-fit: cover;
+		max-width: 100%;
+		border-radius: var(--secondary-border-radius);
+	}
 </style>

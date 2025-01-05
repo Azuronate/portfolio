@@ -10,29 +10,67 @@ const blogs = await getCollection('blog');
 <Layout title="Blogs" description="A centralized platform of Nathan Parker's (KingPr0o7) thoughts across a spectrum of subjects within the technology space." image="blogs.png" section_class='blogs-section'>
 	<div id="blogs-section">
 		<div id="blogs">
-		  {blogs
-			.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-			.map((blog, index) => {
-			  return index === 0 ? (
-				<BlogBanner link={`/blog/${blog.slug}`} thumbnail={`/covers/${blog.data.thumbnail}`} thumbnail_alt={blog.data.thumbnail_alt} title={blog.data.title} tone={blog.data.tone || "Default tone"} date={blog.data.date} />
-			  ) : (
-				<BlogPost link={`/blog/${blog.slug}`} thumbnail={`/covers/${blog.data.thumbnail}`} thumbnail_alt={blog.data.thumbnail_alt} title={blog.data.title} />
-			  );
-			})}
+		{blogs
+		  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+		  .slice(0, 1)
+		  .map((blog) => (
+			<BlogBanner 
+			  link={`/blog/${blog.slug}`} 
+			  thumbnail={`/covers/${blog.data.thumbnail}`} 
+			  thumbnail_alt={blog.data.thumbnail_alt} 
+			  title={blog.data.title} 
+			  tone={blog.data.tone || "Default tone"} 
+			  date={blog.data.date} 
+			/>
+		  ))
+		}
+		</div>
+		<div id="past-blogs-container">
+			<div id="past-blogs-wrapper">
+				{blogs
+					.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+					.slice(1) // Skip the first element
+					.map((blog) => (
+					  <BlogPost 
+						link={`/blog/${blog.slug}`} 
+						thumbnail={`/covers/${blog.data.thumbnail}`} 
+						thumbnail_alt={blog.data.thumbnail_alt} 
+						title={blog.data.title} 
+					  />
+					))
+				  }
+			</div>
 		</div>
 	</div>
 </Layout>
 <style>
 #blogs {
 	display: flex;
-	align-items: baseline;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 50px;
 	padding: 25px 0;
 }
 
+#past-blogs-container {
+	max-width: 100%;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#past-blogs-wrapper {
+	max-width: 1275px;
+    display: flex;
+	gap: 25px;
+	flex-wrap: wrap;
+}
+
+@media (max-width: 1300px) {
+	#past-blogs-wrapper { max-width: 875px; }
+}
+
 @media (max-width: 1000px) {
-	#blogs { padding: 0; }
+	#past-blogs-wrapper {
+		max-width: fit-content;
+		justify-content: center;
+	}
 }
 </style>
