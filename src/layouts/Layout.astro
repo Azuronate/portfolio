@@ -70,7 +70,7 @@ import { join } from 'node:path';
 const { title, description, image, section_class, data_state } = Astro.props;
 const cover = `${Astro.site}covers/${image}`;
 const url = 'ncp.dev';
-const handle = '@KingPr0o7';
+const handle = '@Azuronate';
 ---
 
 <!doctype html>
@@ -115,29 +115,16 @@ const handle = '@KingPr0o7';
 		<meta name="msapplication-config" content="/browserconfig.xml">
 		<meta name="theme-color" content="#378CE1">
 
-		<!-- Font -->
-		<link rel="preconnect" href="https://cdn.fonts.net">
-		<link href="https://cdn.fonts.net/kit/6465539a-5ca6-4b6b-b884-383dd737fa00/6465539a-5ca6-4b6b-b884-383dd737fa00.css" rel="stylesheet" />
 		<AstroFont
 			config={[
 				{
-					name: "gilroy",
-					src: [
-						{
-							style: 'normal',
-							weight: '400',
-							path: join(process.cwd(), 'public', 'font', 'GilroyRegular_normal_normal.woff2')
-						},
-						{
-							style: 'bold',
-							weight: '700',
-							path: join(process.cwd(), 'public', 'font', 'GilroyBold_normal_normal.woff2')
-						}
-					],
-						preload: true,
-						display: "swap",
-						selector: "*",
-						fallback: "sans-serif"
+					src: [],
+					name: "Poppins",
+					googleFontsURL: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap",
+					preload: true,
+					display: "swap",
+					selector: "*",
+					fallback: "sans-serif"
 				},
 			]}
 		/>
