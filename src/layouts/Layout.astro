@@ -62,8 +62,6 @@ import { adapter } from 'astro-vtbot/animations/animation-style';
 import { AstroFont } from "astro-font";
 import '@src/config.css';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import Footer from '@components/Footer.astro';
-import Nav from '@components/Nav.astro';
 import PageOffset from 'astro-vtbot/components/PageOffset.astro';
 import { join } from 'node:path';
 
@@ -144,13 +142,11 @@ const handle = '@Azuronate';
 		<SpeedInsights />
 	</head>
 	<body>
-		<Nav />
 		<main transition:animate={adapter(animation)} data-state={data_state} transition:name="main">
 			<section class={section_class}>
 				<slot />
 			</section>
 		</main>
-		<Footer />
 	</body>
 </html>
 

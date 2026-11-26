@@ -1,11 +1,5 @@
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
-import react from "@astrojs/react";
-import metaTags from "astro-meta-tags";
-import mdx from "@astrojs/mdx";
-import vtbot from "astro-vtbot";
-// import lottie from "astro-integration-lottie";
-import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,9 +17,7 @@ export default defineConfig({
     },
     imageService: true
   }),
-  integrations: [metaTags(), mdx(), vtbot(), react(), icon({
-	iconDir: "src/images/icons",
-  })],
+  integrations: [metaTags()],
   build: {
     trailingSlash: 'never'
   }
