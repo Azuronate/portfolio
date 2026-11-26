@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 import react from "@astrojs/react";
 import metaTags from "astro-meta-tags";
 import mdx from "@astrojs/mdx";
@@ -9,7 +9,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
+  // output: 'hybrid', https://docs.astro.build/en/guides/upgrade-to/v5/#removed-hybrid-rendering-mode
   site: 'https://www.ncp.dev/',
   prefetch: {
     prefetchAll: true

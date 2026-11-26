@@ -5,16 +5,17 @@ import BlogBanner from '@components/Blog-banner.astro'
 import Header1 from '@components/Header1.astro';
 import Header2 from '@components/Header2.astro';
 import Header3 from '@components/Header3.astro';
+import { render } from 'astro:content';
 
 export async function getStaticPaths() {
 	const blogs = await getCollection('blog');
 	return blogs.map(blog => ({
-		params: { slug: blog.slug }, props: { blog }
+		params: { slug: blog.id }, props: { blog }
 	}))
 }
 
 const { blog } = Astro.props;
-const { Content } = await blog.render();
+const { Content } = await render(blog);
 ---
 <Text title={blog.data.title} description={blog.data.description} image={blog.data.thumbnail}>
 	<BlogBanner slot="full" thumbnail={`/covers/${blog.data.thumbnail}`} thumbnail_alt={blog.data.thumbnail_alt} title={blog.data.title} tone={blog.data.tone} date={blog.data.date} centered='true' />

@@ -4,17 +4,18 @@ import Text from '@layouts/Text.astro';
 import Header1 from '@components/Header1.astro';
 import Header2 from '@components/Header2.astro';
 import Header3 from '@components/Header3.astro';
+import { render } from 'astro:content';
 
 export async function getStaticPaths() {
 	const projects = await getCollection('project');
 	return projects.map(project => ({
-		params: { slug: project.slug }, props: { project }
+		params: { slug: project.id }, props: { project }
 	}))
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { Content } = await render(project);
 ---
-<Text title={project.data.name} description="" image={project.data.thumbnail}>
+<Text title={project.data.id} description="" image={project.data.thumbnail}>
 	<Content slot="text" components={{ h1: Header1, h2: Header2, h3: Header3 }} />
 </Text>

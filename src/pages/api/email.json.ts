@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro"
 import { Resend } from "resend"
-export const prerender = false;
+// export const prerender = false; https://docs.astro.build/en/guides/upgrade-to/v5/#removed-hybrid-rendering-mode
 const resend = new Resend(import.meta.env.RESEND_KEY)
 
 export const POST: APIRoute = async({params, request}) => {

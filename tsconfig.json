@@ -1,23 +1,24 @@
 {
 	"extends": "astro/tsconfigs/base",
+	"include": [".astro/types/.d.ts", "**/*"],
+	"exclude": ["dist"],
 	"compilerOptions": {
-		"baseUrl": "./",
 		"paths": {
-			"@src/*": [ "src/*" ],
-			"@public/*": [ "public/*" ],
-			"@images/*": [ "src/images/*" ],
-			"@blog_images/*": [ "src/images/blogs/*" ],
-			"@branding/*": [ "src/images/branding/*" ],
-			"@personal/*": [ "src/images/personal/*" ],
-			"@people/*": [ "src/images/people/*" ],
+			"@src/*": [ "./src/*" ],
+			"@public/*": [ "./public/*" ],
+			"@images/*": [ "./src/images/*" ],
+			"@blog_images/*": [ "./src/images/blogs/*" ],
+			"@branding/*": [ "./src/images/branding/*" ],
+			"@personal/*": [ "./src/images/personal/*" ],
+			"@people/*": [ "./src/images/people/*" ],
 
-			"@icons/*": [ "src/images/icons/*" ],
-			"@logos/*": [ "src/images/icons/logos/*" ],
-			"@symbols/*": [ "src/images/icons/symbols/*" ],
+			"@icons/*": [ "./src/images/icons/*" ],
+			"@logos/*": [ "./src/images/icons/logos/*" ],
+			"@symbols/*": [ "./src/images/icons/symbols/*" ],
 
-			"@layouts/*": [ "src/layouts/*" ],
-			"@pages/*": [ "src/pages/*" ],
-			"@components/*": [ "src/components/*" ],
+			"@layouts/*": [ "./src/layouts/*" ],
+			"@pages/*": [ "./src/pages/*" ],
+			"@components/*": [ "./src/components/*" ],
 		},
 	"jsx": "react-jsx",
 	"jsxImportSource": "react"
