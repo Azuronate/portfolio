@@ -56,17 +56,17 @@ const animation = {
   fade: fading 
 };
 
-import { ClientRouter } from 'astro:transitions';
+//import { ClientRouter } from 'astro:transitions';
 import BrakePad from 'astro-vtbot/components/BrakePad.astro'
-import { adapter } from 'astro-vtbot/animations/animation-style';
+//import { adapter } from 'astro-vtbot/animations/animation-style';
 import { AstroFont } from "astro-font";
 import '@src/config.css';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import PageOffset from 'astro-vtbot/components/PageOffset.astro';
+//import PageOffset from 'astro-vtbot/components/PageOffset.astro';
 import { join } from 'node:path';
 
 const { title, description, image, section_class, data_state } = Astro.props;
-const cover = `${Astro.site}covers/${image}`;
+const cover = `${Astro.site}/${image}`;
 const url = 'ncp.dev';
 const handle = '@Azuronate';
 ---
@@ -129,20 +129,20 @@ const handle = '@Azuronate';
 
 		<!-- Astro -->
 		<meta name="generator" content={Astro.generator} />
-		<ClientRouter fallback="swap" />
-		<PageOffset name="main" />
+		<!-- <ClientRouter fallback="swap" /> -->
+		<!-- <PageOffset name="main" /> -->
 
-		<script is:inline>
+		<!-- <script is:inline>
 			function speedInsightsBeforeSend(data) {
 			  console.log("Speed Insights before send", data)
 			  return data;
 			}
-		</script>
+		</script> -->
 	  
 		<SpeedInsights />
 	</head>
 	<body>
-		<main transition:animate={adapter(animation)} data-state={data_state} transition:name="main">
+		<main data-state={data_state} transition:name="main">
 			<section class={section_class}>
 				<slot />
 			</section>
@@ -152,18 +152,18 @@ const handle = '@Azuronate';
 
 <script define:vars={{slideRight, slideLeft}}> 
 	// Directionally Ordered View Transition Pagination (DOVTP)
-	const pageOrder = ['/', '/about', '/projects', '/blogs', '/contact'];
+	// const pageOrder = ['/', '/about', '/projects', '/blogs', '/contact'];
 
-	document.addEventListener('astro:before-preparation', (e) => {
-		let currentPageIndex = pageOrder.indexOf(e.to.pathname);
-		let previousPageIndex = pageOrder.indexOf(e.from.pathname);
+	// document.addEventListener('astro:before-preparation', (e) => {
+	// 	let currentPageIndex = pageOrder.indexOf(e.to.pathname);
+	// 	let previousPageIndex = pageOrder.indexOf(e.from.pathname);
 
-		currentPageIndex < previousPageIndex ? e.direction = 'backward' : e.direction = 'forward';
-		sessionStorage.setItem('direction', e.direction);
-		sessionStorage.setItem('referrer', e.from.pathname);
-		currentPageIndex === -1 || previousPageIndex === -1 ? e.direction = 'fade' : 'forward'; // If it's not in the array, don't slide
-		currentPageIndex == previousPageIndex ? e.direction = 'fade' : e.direction; // If it's the same page, don't redo slide animation
-	});
+	// 	currentPageIndex < previousPageIndex ? e.direction = 'backward' : e.direction = 'forward';
+	// 	sessionStorage.setItem('direction', e.direction);
+	// 	sessionStorage.setItem('referrer', e.from.pathname);
+	// 	currentPageIndex === -1 || previousPageIndex === -1 ? e.direction = 'fade' : 'forward'; // If it's not in the array, don't slide
+	// 	currentPageIndex == previousPageIndex ? e.direction = 'fade' : e.direction; // If it's the same page, don't redo slide animation
+	// });
 </script>
 
 <script>
@@ -177,103 +177,103 @@ const handle = '@Azuronate';
 	//   Further functionality and editing by Nathan Parker 
 	//
 
-	const BANNER_IMAGE = ".blog-image-wrapper .blog-image";
-	const BANNER_CONTAINER = ".blog-visible-container"
-	const BANNER_TITLE = ".blog-image-wrapper .blog-title";
-	const BANNER_INFO = ".blog-image-wrapper .blog-info";
-	const POST_IMAGE = '.blog-link[href="${pathname}"] .blog-thumbnail';
-	const POST_TITLE = '.blog-link[href="${pathname}"] .blog-embed-title';
+	// const BANNER_IMAGE = ".blog-image-wrapper .blog-image";
+	// const BANNER_CONTAINER = ".blog-visible-container"
+	// const BANNER_TITLE = ".blog-image-wrapper .blog-title";
+	// const BANNER_INFO = ".blog-image-wrapper .blog-info";
+	// const POST_IMAGE = '.blog-link[href="${pathname}"] .blog-thumbnail';
+	// const POST_TITLE = '.blog-link[href="${pathname}"] .blog-embed-title';
 
 	// Apply view transition names based on the current and previous page paths
-	document.addEventListener("astro:before-preparation", (e) => {
-		const originalLoader = e.loader;
-		e.loader = async () => {
-			await originalLoader();
-			if (fromTo(e.from, "/blogs", e.to, "/blog/")) {
-				addBlogBannerViewTransitionNames(e.newDocument);
-				addBlogPostViewTransitionNames(document, e.to.pathname);
-			}
+	// document.addEventListener("astro:before-preparation", (e) => {
+	// 	const originalLoader = e.loader;
+	// 	e.loader = async () => {
+	// 		await originalLoader();
+	// 		if (fromTo(e.from, "/blogs", e.to, "/blog/")) {
+	// 			addBlogBannerViewTransitionNames(e.newDocument);
+	// 			addBlogPostViewTransitionNames(document, e.to.pathname);
+	// 		}
 
-			if (fromTo(e.from, "/blog/", e.to, "/blogs")) {
-				addBlogBannerViewTransitionNames(document);
-				addBlogPostViewTransitionNames(e.newDocument, e.from.pathname);
-			}
-		};
-	});
+	// 		if (fromTo(e.from, "/blog/", e.to, "/blogs")) {
+	// 			addBlogBannerViewTransitionNames(document);
+	// 			addBlogPostViewTransitionNames(e.newDocument, e.from.pathname);
+	// 		}
+	// 	};
+	// });
 	
-	function fromTo(from: URL, fromValue: string, to: URL, toValue: string) {
-		return (
-			from.pathname.startsWith(fromValue) && to.pathname.startsWith(toValue)
-		);
-	}
+	// function fromTo(from: URL, fromValue: string, to: URL, toValue: string) {
+	// 	return (
+	// 		from.pathname.startsWith(fromValue) && to.pathname.startsWith(toValue)
+	// 	);
+	// }
 
 	// Remove the transition if pathname isn't a blog/blogs pages
-	document.addEventListener("astro:before-swap", (e) =>
-		e.viewTransition.ready.finally(() =>
-			removeBlogViewTransitionNames(document, e.from.pathname)
-		)
-	);
+	// document.addEventListener("astro:before-swap", (e) =>
+	// 	e.viewTransition.ready.finally(() =>
+	// 		removeBlogViewTransitionNames(document, e.from.pathname)
+	// 	)
+	// );
 
-	function addBlogBannerViewTransitionNames(doc: Document) {
-		setName(doc, BANNER_IMAGE, "blog-image");
-		setName(doc, BANNER_CONTAINER, "blog-info");
-		setName(doc, BANNER_TITLE, "blog-title");
-		setName(doc, BANNER_INFO, "info");
-	}
+	// function addBlogBannerViewTransitionNames(doc: Document) {
+	// 	setName(doc, BANNER_IMAGE, "blog-image");
+	// 	setName(doc, BANNER_CONTAINER, "blog-info");
+	// 	setName(doc, BANNER_TITLE, "blog-title");
+	// 	setName(doc, BANNER_INFO, "info");
+	// }
 
-	function addBlogPostViewTransitionNames(doc: Document, pathname: string) {
-		setName(doc, withPathname(pathname, POST_IMAGE), "blog-image");
-		setName(doc, withPathname(pathname, POST_TITLE), "blog-title");
-	}
+	// function addBlogPostViewTransitionNames(doc: Document, pathname: string) {
+	// 	setName(doc, withPathname(pathname, POST_IMAGE), "blog-image");
+	// 	setName(doc, withPathname(pathname, POST_TITLE), "blog-title");
+	// }
 
-	function removeBlogViewTransitionNames(doc: Document, pathname: string) {
-		setName(doc, BANNER_IMAGE, "");
-		setName(doc, BANNER_CONTAINER, "");
-		setName(doc, BANNER_TITLE, "");
-		setName(doc, BANNER_INFO, "");
-		setName(doc, withPathname(pathname, POST_IMAGE), "");
-		setName(doc, withPathname(pathname, POST_TITLE), "");
-	}
+	// function removeBlogViewTransitionNames(doc: Document, pathname: string) {
+	// 	setName(doc, BANNER_IMAGE, "");
+	// 	setName(doc, BANNER_CONTAINER, "");
+	// 	setName(doc, BANNER_TITLE, "");
+	// 	setName(doc, BANNER_INFO, "");
+	// 	setName(doc, withPathname(pathname, POST_IMAGE), "");
+	// 	setName(doc, withPathname(pathname, POST_TITLE), "");
+	// }
 
-	function withPathname(pathname: string, selector: string) {
-		return selector.replace("${pathname}", pathname);
-	}
+	// function withPathname(pathname: string, selector: string) {
+	// 	return selector.replace("${pathname}", pathname);
+	// }
 
 	// Apply said view transition names
-	function setName(doc: Document, selector: string, name: string) {
-		const element = doc.querySelector<HTMLElement>(selector);
-		if (element) {
-			// @ts-ignore
-			element.style.viewTransitionName = name;
-		} else {
-			/* If the target blog is in the banner, apply specialized transitions */
-			let title = doc.querySelector<HTMLElement>(BANNER_TITLE);
-			if (title) {
-				// @ts-ignore
-				title.style.viewTransitionName = name;
-			}
-			/* Add the info transition if the target blog is in the banner */
-			if (doc.querySelector<HTMLElement>(BANNER_INFO)) {
-				if (name !== "") {
-					// @ts-ignore
-					doc.querySelector<HTMLElement>(BANNER_INFO).style.viewTransitionName = "info";
-				} else {
-					// @ts-ignore
-					doc.querySelector<HTMLElement>(BANNER_INFO).style.viewTransitionName = "";
-				}
-			}
-		}
-	}
+	// function setName(doc: Document, selector: string, name: string) {
+	// 	const element = doc.querySelector<HTMLElement>(selector);
+	// 	if (element) {
+	// 		// @ts-ignore
+	// 		element.style.viewTransitionName = name;
+	// 	} else {
+	// 		/* If the target blog is in the banner, apply specialized transitions */
+	// 		let title = doc.querySelector<HTMLElement>(BANNER_TITLE);
+	// 		if (title) {
+	// 			// @ts-ignore
+	// 			title.style.viewTransitionName = name;
+	// 		}
+	// 		/* Add the info transition if the target blog is in the banner */
+	// 		if (doc.querySelector<HTMLElement>(BANNER_INFO)) {
+	// 			if (name !== "") {
+	// 				// @ts-ignore
+	// 				doc.querySelector<HTMLElement>(BANNER_INFO).style.viewTransitionName = "info";
+	// 			} else {
+	// 				// @ts-ignore
+	// 				doc.querySelector<HTMLElement>(BANNER_INFO).style.viewTransitionName = "";
+	// 			}
+	// 		}
+	// 	}
+	// }
 </script>
 
 <style is:inline>
 /* Sorry Martin! */
-#vtbot-loading-indicator {
+/* #vtbot-loading-indicator {
 	display: none;
-}
+} */
 
 /* Credit to: Kevin Powell (Credits Page) */
-main {
+/* main {
 	display: grid;
 	grid-template-columns:
 		[full-start] minmax(25px, 1fr) [content-start] minmax(0, var(--max-width)) [content-end] minmax(25px, 1fr) [full-end];
@@ -281,10 +281,10 @@ main {
 	min-height: 100vh;
 	width: 100%;
 	place-content: center;
-}
+} */
 
 	/* Handle different Layouts */
-	main > * { grid-column: content; }
+	/* main > * { grid-column: content; }
 
 	main[data-state="padded"] { padding-top: 95px; }
 
@@ -308,22 +308,24 @@ main {
 			align-items: center;
 			width: 100%;
 			gap: 50px;
-		}
+		} */
 
-@media (max-width: 1000px) {
-	main, main[data-state="padded"] { padding-top: 0px; } /* Removes top padding due to navbar moving to bottom of vh */
+
+/* Removes top padding due to navbar moving to bottom of vh */
+/* @media (max-width: 1000px) {
+	main, main[data-state="padded"] { padding-top: 0px; }
 	.blogs-section, .blog-viewer { padding: 0; grid-column: full !important;}
 	.about-section { grid-column: full !important; }
 		.about-section > *:not(#prologue) { padding: 0 25px }
 
-}
+} */
 
-@media (min-height: 2000px) {
+/* @media (min-height: 2000px) {
 	main { place-content: start; }
-}
+} */
 
 /* Directional View Transition Animations (DVTA) */
-@keyframes slideInFromRight {
+/* @keyframes slideInFromRight {
 	0% {
 		transform: translateX(100%);
 		opacity: 0;
@@ -383,5 +385,5 @@ main {
 	100% {
 		opacity: 0;
 	}
-}
+} */
 </style>

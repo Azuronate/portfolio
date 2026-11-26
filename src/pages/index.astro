@@ -1,10 +1,73 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { Image } from "astro:assets";
+import Image from 'astro/components/Image.astro';
+
+import Logo from '@images/logo.svg'
 ---
 
-<Layout title="Nathan Parker" description="Discover all about Nathan Parker (Azuronate) from his projects, blogs, and the in-depth story of becoming a developer." image="index.png">
-	...
+<Layout title="Nathan Parker (WIP)" description="A new era: 2027." image="sky.png">
+	<div id="backdrop">
+		<div id="logo-wrapper">
+			<hr>	
+			<Image src={Logo} alt="logo" id="logo"></Image>
+			<hr>	
+		</div>
+		<h1>Development is underway for a new version of <a href="https://www.ncp.dev/">ncp.dev</a>!</h1>
+		<p style="text-align: center;">The previous version, was quite outta date. As such, I've started the journey of research to improve this site.</p>
+
+		<div id="blurb">
+			<p>Over the years, I've gained even more knowledge and story to add. However, this new version will take some time to develop. The site will also now be going from Astro v4 to v7. Plus, I've been slowly but surely adapting my branding style to be more refreshed and with some more character. I'm expecting this site to be finalized by the end of Q1, 2027. Of course, all of which will NOT be vibecoded and made by myself. Like all my other projects, this love takes time and mistakes. </p>
+		</div>
+	</div>
 </Layout>
 <style is:inline>
+	h1 { 
+		text-shadow: 8px 4px 32px black; 
+		padding: 10px;
+	}
+	p { 
+		font-size: 20px;
+		text-shadow: 4px 3px 12px black;
+		padding: 10px;
+	}
+
+	body {
+		background-image: url("/src/images/sky.png");
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		overflow: hidden;
+	}
+
+	#backdrop {
+		width: 100%;
+		height: 100vh;
+		align-items: center;
+		display: flex;
+		gap: 20px;
+		flex-direction: column;
+		background: rgba(0, 0, 0, 0.4);
+
+		#logo-wrapper {
+			display: flex;
+			align-items: center;
+			width: 100%;
+
+			#logo { 
+				width: 50%;
+				margin: 0px 20px; 
+			 }
+			hr { 
+				flex: 1;
+				background-color: white;
+				border: none;
+				height: 4px;
+			}
+		}
+
+		#blurb { 
+			padding: 40px; 
+			line-height: 2rem;
+		}
+	}
 </style>

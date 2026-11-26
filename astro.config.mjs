@@ -17,7 +17,7 @@ export default defineConfig({
     },
     imageService: true
   }),
-  integrations: [metaTags()],
+  integrations: [],
   build: {
     trailingSlash: 'never'
   }
